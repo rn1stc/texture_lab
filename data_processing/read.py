@@ -1,3 +1,5 @@
+#Calculating (and plotting) of PFs from DRON-3 experimental data
+
 from numpy.random import uniform, seed
 from matplotlib.mlab import griddata
 import os
