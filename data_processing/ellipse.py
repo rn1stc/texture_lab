@@ -1,3 +1,5 @@
+#Building von Moses ellipse from DAMASK simulation data (or any set of yield strength measured along different directions)
+
 import numpy as np
 from matplotlib import patches
 from matplotlib.collections import PatchCollection
