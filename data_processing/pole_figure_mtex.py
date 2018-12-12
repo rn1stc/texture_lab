@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 
-#Reshaping and processing (subtraction of background, defocusing correction) data
-#For MTEX calculations of PF, ODF, IPF, etc.
 
 import numpy as np
 import sys
