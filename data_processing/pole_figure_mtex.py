@@ -8,13 +8,27 @@ import math
 
 
 InFileName = sys.argv[1] #get filename with ODF table from first argument of comand string
-fon1 = np.genfromtxt(InFileName,skip_header = 150, skip_footer=1) 
-fon2 = np.genfromtxt(InFileName,skip_header = 151, )
 #print(fon1[:]) #debag output
 #print(fon2[:]) #debag output
-fon = np.hstack((fon1,fon2))
-#print(fon) #debag output
 
+#print(fon) #debag output
+with open(InFileName, encoding='ISO-8859-1') as f:
+    lines = sum([1 for _ in f])
+if lines < 160:
+    print('There are', lines, 'lines in', InFileName, ', assuming normal PF')
+    basal = False
+elif lines > 160:
+    print('There are', lines, 'lines in', InFileName, ', assuming basal PF')
+    basal = True
+
+if basal:
+    fon1 = np.genfromtxt(InFileName, skip_header=170, skip_footer=1)
+    fon2 = np.genfromtxt(InFileName, skip_header=172, )
+    fon = np.hstack((fon1[0, :], fon1[1, :], fon2))
+else:
+    fon1 = np.genfromtxt(InFileName, skip_header=150, skip_footer=1)
+    fon2 = np.genfromtxt(InFileName, skip_header=151, )
+    fon = np.hstack((fon1, fon2))
 #_______coefficient of defocusing
 
 #defoc39 = np.array([1.00, 1.00, 1.01, 1.03, 1.05, 1.08, 1.12, 1.19, 1.31, 1.47, 1.66, 1.86, 2.08, 2.40, 2.95, 3.57, 5.62, 39,5])
@@ -85,7 +99,7 @@ elif two_theta < 153.4 :
     two_theta_right = 153.4
 
 
-OutFile=open(sys.argv[1]+'_new','w')
+OutFile=open(str(InFileName)+'_new','w')
 OutFile.write('1 header \n')
 #OutFile.write('rot \t azimut \t intens \t backgr \t defoc \n')
 OutFile.write('rot \t azimut \t intens \n')
@@ -93,7 +107,10 @@ intens = np.genfromtxt(InFileName,skip_header = 8, max_rows = 1)
 m_intens =(intens[0]+intens[1]+ intens[2]+intens[3])/4
 OutFile.write('0 \t 0 \t'+str((m_intens-fon[0])*1.00)+'\n')
 skip_line = 10
-for i in range(5,71,5):
+if basal: max_angle = 81
+else: max_angle = 71
+
+for i in range(5,max_angle,5):
     intens = []
     defoc = (two_theta-two_theta_left)*(defoc2[int(i/5)]-defoc1[int(i/5)])/(two_theta_right-two_theta_left)+defoc1[int(i/5)]
     for p in range(9):
