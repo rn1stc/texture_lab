@@ -6,7 +6,7 @@
 import numpy as np
 import os
 
-odf_name = "11207.TXT"
+odf_name = "15479.TXT"
 
 f1 = open(odf_name, "r")
 f2 = open('tmp.tmp', 'w')
@@ -31,7 +31,7 @@ f2.close()
 data = np.sort(data, order=['f1', 'f3'])
 os.remove('tmp.tmp')
 f2 = open(odf_name + '.linearODF', 'w')
-f2.write("1 header\nphi1     Phi    phi2 intensity\n")
+f2.write("1 header\n1_euler 2_euler 3_euler  intensity\n")
 for line in data:
     for i in range(0, 3):
         if line[i] == 0:
