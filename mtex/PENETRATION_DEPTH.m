@@ -1,3 +1,4 @@
+%author unknown
 function [ ] = PENETRATION_DEPTH ( )
 close all
 global tabule pom pom2; %pom=choice of type of measuring, pom2=choice of type of attenuation coefficient
@@ -181,7 +182,7 @@ figure(2); % new figure
  set(gca,'LineWidth',2,'FontWeight','bold','FontSize',15)
  grid
  T=(10000*sin(hod))/(2*my) % write value of penetration depth for one value of angle
- xlabel('2\theta[°]')
+ xlabel('2\theta[Â°]')
  ylabel('T[\mum]')
 
  elseif geometrie==1 % grazing incidence diffraction
@@ -198,7 +199,7 @@ figure(2); % new figure
  plot(x,aprox,'r--','LineWidth',2)
  set(gca,'LineWidth',2,'FontWeight','bold','FontSize',15)
  grid
- xlabel('2\theta[°]')
+ xlabel('2\theta[Â°]')
  ylabel('T[\mum]')
  hold off;
  
@@ -229,7 +230,7 @@ sinmax2=abs(sinmax);
  title(['Sin^2\psi = ',num2str(D(i))])
  grid
  axis normal
- xlabel('2\theta[°]')
+ xlabel('2\theta[Â°]')
  ylabel('T_e_f[\mum]')
  xlim([x1 x2])
  end
@@ -250,5 +251,5 @@ sinmax2=abs(sinmax);
  grid
  xlabel('sin^2\psi')
  ylabel('T[\mum]')
- title(['2\theta = ',num2str(dvetheta),'°'])
+ title(['2\theta = ',num2str(dvetheta),'Â°'])
 end % for omega-scan
