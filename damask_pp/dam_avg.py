@@ -24,7 +24,7 @@ dataavg = list()
 dataabsavg = list()
 lst = os.listdir('.')
 lst.sort()
-h = len(glob.glob1('.',"*.txt"))
+h = len(glob.glob1('.',"*.txt")) - len(glob.glob1('.',"*nodal.txt"))
 for filename in lst:
     if filename.endswith('.txt') and not filename.endswith('nodal.txt'):
         with open(filename, 'rt') as f:
@@ -61,7 +61,7 @@ x = np.linspace(0, end_x_var, num = h)
 
 dir_name = os.path.basename(os.path.abspath(os.path.join(__file__ ,"../..")))
 for i in range(0, len(cols)):
-    out_file = open("avg_txt/" + dir_name + "_" + cols[i] + '.dat', 'w')
+    out_file = open("avg_txt/"  + cols[i] + '.dat', 'w')
     y = list()
     for j in range(0, h):
         y.append(dataavg[j][i])
@@ -73,7 +73,7 @@ for i in range(0, len(cols)):
     plt.ylabel(cols[i])
     plt.xlabel(u"Деформация, %")
     plt.tight_layout()
-    plt.savefig("avg_img/" + dir_name + "_" + cols[i] + ".png", dpi=96)
+    plt.savefig("avg_img/" + cols[i] + ".png", dpi=96)
     plt.close()
 
 linestyles = ("-","--","-.",":","x","+",".","d","^","p","_","h")
@@ -94,7 +94,7 @@ for avgname in list_avg:
 
     ax.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0., prop={'size': 10})
     plt.show()
-    plt.savefig("avg_img/" + dir_name + "_0PLANES" + avgname + ".png", dpi=96)
+    plt.savefig("avg_img/" + "0PLANES" + avgname + ".png", dpi=96)
     plt.close()
 
 k=0
@@ -140,7 +140,7 @@ for addtype in add_type:
                 plt.tight_layout()
                 k += comb_len
             ax.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0., prop={'size': 10})
-            plt.savefig("avg_img/" + dir_name + "_0SYSTEMS_" + addtype + combname + def_type + ".png", dpi=96)
+            plt.savefig("avg_img/" + "0SYSTEMS_" + addtype + combname + def_type + ".png", dpi=96)
             plt.close()
 
 ll = 0
@@ -183,7 +183,7 @@ for i in range(0, len(z)):
     plt.xlabel(u"Деформация, %")
     plt.tight_layout()
 ax.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0., prop={'size': 10})
-plt.savefig("avg_img/" + dir_name + "_0REL_SHEAR_ACTIVITY" + ".png", dpi=96)
+plt.savefig("avg_img/" + "0REL_SHEAR_ACTIVITY" + ".png", dpi=96)
 plt.close()
 
 ll = 0
@@ -249,5 +249,5 @@ out_file_rel = open('avg_txt/rel_sys_act.dat', 'r')
 print(out_file_rel.read())
 out_file_rel.close()
 ax.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0., prop={'size': 10})
-plt.savefig("avg_img/" + dir_name + "_0REL_TEX_ACTIVITY" + ".png", dpi=96)
+plt.savefig("avg_img/" + "0REL_TEX_ACTIVITY" + ".png", dpi=96)
 plt.close()

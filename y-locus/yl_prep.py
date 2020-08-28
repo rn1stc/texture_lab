@@ -2,7 +2,7 @@ import os
 from shutil import copyfile, rmtree
 import numpy as np
 
-tg_dir = "mono_loc_three"
+tg_dir = "sae304three"
 
 var_range = np.array([0, 45, 90])
 sim_files = [".config", ".geom"]

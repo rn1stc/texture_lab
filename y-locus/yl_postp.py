@@ -22,7 +22,7 @@ matplotlib.use('Agg')
 fig = plt.figure()
 ax = fig.add_subplot(111)
 scale = 0
-tg_dirs = ["mono_loc_one", "mono_loc_two", "mono_loc_three"]
+tg_dirs = ["sae304one", "sae304two", "sae304three"]
 
 for tg_dir in tg_dirs:
     dirs = os.listdir('.')
@@ -36,7 +36,7 @@ for tg_dir in tg_dirs:
             except ValueError:
                 print('Could not recognize angle in directory' + dir0 + '. Omitting...')
             for result in ["1_p", "2_p", "5_p"]:
-                with open(dir0 + "/postProc/avg_txt/postProc_" + result + ".dat", 'rt') as f:
+                with open(dir0 + "/postProc/avg_txt/" + result + ".dat", 'rt') as f:
 
                     reader = csv.reader(f, delimiter='	', skipinitialspace=True)
                     exec("res_" + result + "_" + str(angle) + "=np.array([])")
